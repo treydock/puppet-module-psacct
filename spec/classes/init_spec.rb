@@ -21,15 +21,23 @@ describe 'psacct' do
       it { is_expected.to create_class('psacct') }
       it { is_expected.to contain_class('psacct::params') }
 
-      it { is_expected.to contain_anchor('psacct::start').that_comes_before('Class[psacct::install]') }
-      it { is_expected.to contain_class('psacct::install').that_comes_before('Class[psacct::config]') }
-      it { is_expected.to contain_class('psacct::config').that_notifies('Class[psacct::service]') }
-      it { is_expected.to contain_class('psacct::service').that_comes_before('Anchor[psacct::end]') }
-      it { is_expected.to contain_anchor('psacct::end') }
+      it do
+        is_expected.to contain_package('psacct').only_with({
+          :ensure => 'present',
+          :name   => 'psacct',
+          :notify => 'Service[psacct]',
+        })
+      end
 
-      include_context 'psacct::install'
-      include_context 'psacct::config'
-      include_context 'psacct::service'
+      it do
+        is_expected.to contain_service('psacct').only_with({
+          :ensure      => 'running',
+          :enable      => 'true',
+          :name        => 'psacct',
+          :hasstatus   => 'true',
+          :hasrestart  => 'true',
+        })
+      end
 
       # Test validate_bool parameters
       [

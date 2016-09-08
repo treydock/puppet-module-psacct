@@ -9,14 +9,18 @@ class psacct (
   $service_hasrestart   = $psacct::params::service_hasrestart,
 ) inherits psacct::params {
 
-  include psacct::install
-  include psacct::config
-  include psacct::service
+  package { 'psacct':
+    ensure => $package_ensure,
+    name   => $package_name,
+    notify => Service['psacct'],
+  }
 
-  anchor { 'psacct::start': }->
-  Class['psacct::install']->
-  Class['psacct::config']~>
-  Class['psacct::service']->
-  anchor { 'psacct::end': }
+  service { 'psacct':
+    ensure     => $service_ensure,
+    enable     => $service_enable,
+    name       => $service_name,
+    hasstatus  => $service_hasstatus,
+    hasrestart => $service_hasrestart,
+  }
 
 }
