@@ -1,0 +1,14 @@
+{
+  "name": "treydock-psacct",
+  "version": "0.0.1",
+  "author": "treydock",
+  "summary": "psacct Puppet module",
+  "license": "Apache 2.0",
+  "source": "git://github.com/treydock/puppet-psacct.git",
+  "issues_url": "https://github.com/treydock/puppet-psacct/issues",
+  "project_page": "https://github.com/treydock/puppet-psacct",
+  "dependencies": [
+    { "name": "puppetlabs-stdlib", "version_range": ">= 3.2.0 <5.0.0" }
+  ]
+}
+
