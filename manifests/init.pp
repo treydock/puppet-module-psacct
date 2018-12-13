@@ -42,6 +42,7 @@ class psacct (
     create_owner  => 'root',
     create_group  => 'root',
     postrotate    => $logrotate_postrotate,
+    require       => Package['psacct'],
   }
 
   service { 'psacct':
