@@ -8,7 +8,8 @@
   "issues_url": "https://github.com/treydock/puppet-psacct/issues",
   "project_page": "https://github.com/treydock/puppet-psacct",
   "dependencies": [
-    { "name": "puppetlabs-stdlib", "version_range": ">= 3.2.0 <5.0.0" }
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 3.2.0 <5.0.0" },
+    { "name": "puppet/logrotate", "version_requirement": ">= 3.0.0 <4.0.0" }
   ]
 }
 
